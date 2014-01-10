@@ -1,7 +1,7 @@
 doctype html
 html
   head
-    title Meatspace chat: your 2 seconds of fame.
+    title= t('pageTitle')
     meta(content='width=device-width, height=device-height, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0', name='viewport')
     meta(content='yes', name='apple-mobile-web-app-capable')
     meta(content='chrome=1', http-equiv='X-UA-Compatible')
@@ -18,7 +18,7 @@ html
   body(data-authenticated='#{!!session.email}')
     #wrapper
       .header
-        a#logo(href='/info', target='_blank', title='Info!') Info!
+        a#logo(href='/info', target='_blank', title=t('info!'))= t('info!')
         .language
           if session.lang == 'fr'
             a(href='https://chat.meatspac.es/?lang=en') English
@@ -27,9 +27,9 @@ html
         #menu-toggle ≡
           ul.menu
             li
-              a#unmute(href='javascript:;') Unmute
+              a#unmute(href='javascript:;')= t('unmute')
             li
-              a#artwork(href='javascript:;') Toggle Artwork
+              a#artwork(href='javascript:;')= t('toggleArtwork')
 
       .chats
         ul

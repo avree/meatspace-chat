@@ -26,7 +26,8 @@
     "socket.io": ">= 0.9.16",
     "crypto": "0.0.3",
     "level": ">= 0.10.0",
-    "hood": ">= 0.1.0"
+    "hood": ">= 0.1.0",
+    "i18next": "~1.7.1"
   },
   "devDependencies": {
     "grunt": ">= 0.4.x",

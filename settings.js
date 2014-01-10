@@ -2,6 +2,7 @@
 module.exports = function(app, configurations, express) {
   var clientSessions = require('client-sessions');
   var nconf = require('nconf');
+  var i18n = require('i18next');
   var maxAge = 24 * 60 * 60 * 1000 * 28;
   var nativeClients = require('./clients.json');
   var csrf = express.csrf();
@@ -17,6 +18,15 @@ module.exports = function(app, configurations, express) {
       csrf(req, res, next);
     }
   };
+
+  i18n.init({
+    lng: nconf.get('locale'), // undefined detects user browser settings
+    supportedLngs: ['en', 'fr'],
+    fallbackLng: 'en',
+    useCookie: false,
+    resGetPath: 'locales/__lng__.json'
+  });
+  i18n.registerAppHelper(app);
 
   app.configure(function () {
     app.set('views', __dirname + '/views');
@@ -56,6 +66,7 @@ module.exports = function(app, configurations, express) {
       res.locals.analyticsHost = nconf.get('analyticsHost');
       next();
     });
+    app.use(i18n.handle);
     app.enable('trust proxy');
     app.locals.pretty = true;
     app.use(app.router);
